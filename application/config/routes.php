@@ -54,8 +54,5 @@ $route['default_controller'] = 'home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-// UI
-$route['admin'] = 'admin/dashboard';
-
 // MANAGE
-$route['manage'] = 'manage/dashboard';
+$route['manage'] = 'manage/index';
