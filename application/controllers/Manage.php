@@ -53,6 +53,9 @@ class Manage extends AVC_Controller
             'https://cdn.jsdelivr.net/npm/vue',
             '/js/profile.js',
         ]);
+
+        $profile = $this->getModel('profile');
+        $this->data['profile'] = $profile->get(1);
     }
 
     public function login()
@@ -108,6 +111,9 @@ class Manage extends AVC_Controller
             return $this->redirect('/manage');
         }
 
+        $errors = [];
+        $post = $this->getPost();
+
         $config['upload_path'] = APPPATH . '../public/uploads/';
         $config['allowed_types'] = 'gif|jpg|png';
         $config['max_size'] = 2000;
@@ -117,11 +123,26 @@ class Manage extends AVC_Controller
         $this->load->library('upload', $config);
 
         if (!$this->upload->do_upload('avatar')) {
-            $error = $this->upload->display_errors();
-            print_r($error);
+            $errors[] = $this->upload->display_errors();
         } else {
-            $data = array('upload_data' => $this->upload->data());
-            print_r($data);
+            $data = $this->upload->data();
+            $post['avatar'] = $data['file_name'];
         }
+
+        if (!$this->upload->do_upload('cover')) {
+            $errors[] = $this->upload->display_errors();
+        } else {
+            $data = $this->upload->data();
+            $post['cover'] = $data['cover'];
+        }
+
+        $profile = $this->getModel('profile');
+        $post['id'] = 1;
+        $profile->save($post);
+
+        $allErrors = array_merge($errors, $profile->getErrors());
+
+        $this->setError(implode(', ', $allErrors));
+        return $this->redirect('/manage');
     }
 }

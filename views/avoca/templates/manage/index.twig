@@ -5,12 +5,12 @@
         {{ form_open_multipart('/manage/save_profile') }}
         <div class="form-group">
             <label>Profile name</label>
-            <input type="text" name="name" class="form-control" required>
+            {{ avoca_form('name', profile.name, {required: true}) }}
         </div>
 
         <div class="form-group">
             <label>Full name</label>
-            <input type="text" name="full_name" class="form-control" required>
+            {{ avoca_form('full_name', profile.full_name, {required: true}) }}
         </div>
 
         <div class="form-group">
@@ -25,22 +25,22 @@
 
         <div class="form-group">
             <label>Phone</label>
-            <input type="text" name="phone" class="form-control">
+            {{ avoca_form('phone', profile.phone, {required: true}) }}
         </div>
 
         <div class="form-group">
             <label>Phone alternative</label>
-            <input type="text" name="phone_alt" class="form-control">
+            {{ avoca_form('phone_alt', profile.phone_alt, {required: true}) }}
         </div>
 
         <div class="form-group">
             <label>Email</label>
-            <input type="email" name="email" class="form-control">
+            {{ avoca_form('email', profile.email, {required: true}) }}
         </div>
 
         <div class="form-group">
             <label>Email alternative</label>
-            <input type="email" name="email_alt" class="form-control">
+            {{ avoca_form('email_alt', profile.email_alt, {required: true}) }}
         </div>
 
         <div class="form-group">
@@ -91,12 +91,12 @@
 
         <div class="form-group">
             <label>Summary</label>
-            <textarea name="summary" class="editorWYSIWYG form-control"></textarea>
+            <textarea name="summary" class="editorWYSIWYG form-control">{{ profile.summary }}</textarea>
         </div>
 
         <div class="form-group">
             <label>Description</label>
-            <textarea name="description" class="editorWYSIWYG form-control"></textarea>
+            <textarea name="description" class="editorWYSIWYG form-control">{{ profile.description }}</textarea>
         </div>
 
         <button type="submit" class="btn btn-primary"> Save change </button>
