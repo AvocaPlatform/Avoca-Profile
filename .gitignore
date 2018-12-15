@@ -2,6 +2,7 @@
 
 application/cache/twig/*
 application/logs/*
+public/uploads/*
 
 composer.lock
 

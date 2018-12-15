@@ -1,5 +1,105 @@
 {% extends 'templates/layouts/manage.twig' %}
 
 {% block content %}
-    <h1>Hello</h1>
+    <div id="AvocaProfile">
+        {{ form_open_multipart('/manage/save_profile') }}
+        <div class="form-group">
+            <label>Profile name</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Full name</label>
+            <input type="text" name="full_name" class="form-control" required>
+        </div>
+
+        <div class="form-group">
+            <label>Avatar</label>
+            <input type="file" name="avatar" class="form-control-file">
+        </div>
+
+        <div class="form-group">
+            <label>Cover</label>
+            <input type="file" name="cover" class="form-control-file">
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="text" name="phone" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Phone alternative</label>
+            <input type="text" name="phone_alt" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label>Email alternative</label>
+            <input type="email" name="email_alt" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" name="title" id="titleValue" value="">
+            <label>Title</label>
+            <div class="input-group">
+                <input type="text" class="form-control" v-model="title">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" @click="addTitle()">Add</button>
+                </div>
+            </div>
+            <br>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(item, index) in title_arr">
+                    {{ '{{ item }}' }}
+                    <a href="javascript:;" class="badge badge-danger badge-pill" @click="removeTitle(index)">x</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <label>Social</label>
+            <input type="hidden" name="social" id="socialValue" value="">
+            <div class="input-group">
+                <div class="input-group-append">
+                <select class="custom-select" v-model="social" style="border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                    <option selected>Choose...</option>
+                    <option value="Github">Github</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Twitter">Twitter</option>
+                    <option value="Linkedin">Linkedin</option>
+                </select>
+                </div>
+                <input type="text" class="form-control" v-model="socialLink">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button" @click="addSocial()">Add</button>
+                </div>
+            </div>
+            <br>
+            <ul class="list-group">
+                <li class="list-group-item d-flex justify-content-between align-items-center" v-for="(item, index) in social_arr">
+                    {{ '{{ item.link }}' }}
+                    <span class="badge badge-primary badge-pill">{{ '{{ item.social }}' }}</span>
+                    <a href="javascript:;" class="badge badge-danger badge-pill" @click="removeSocial(index)">x</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <label>Summary</label>
+            <textarea name="summary" class="editorWYSIWYG form-control"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="description" class="editorWYSIWYG form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary"> Save change </button>
+        {{ form_close() }}
+    </div>
 {% endblock %}

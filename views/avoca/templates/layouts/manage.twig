@@ -7,10 +7,12 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{{ avoca_static() }}/css/manage.css">
+    {% for css in _CSS %}
+        <link rel="stylesheet" href="{{ css }}">
+    {% endfor %}
 
     <title>{{ _pageTitle }}</title>
 </head>
@@ -32,43 +34,13 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">
+                        <a class="nav-link active" href="{{ avoca_url('/manage') }}">
                             <i class="fa fa-home"></i> Profile
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-home"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-home"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-home"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-home"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-home"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-home"></i> Orders
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">
-                            <i class="fa fa-home"></i> Orders
+                        <a class="nav-link" href="{{ avoca_url('/manage/settings') }}">
+                            <i class="fa fa-cogs"></i> Settings
                         </a>
                     </li>
                 </ul>
@@ -76,6 +48,16 @@
         </nav>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            {% if get_flash('error') %}
+                <div class="alert alert-danger">
+                    {{ get_flash('error') }}
+                </div>
+            {% endif %}
+            {% if get_flash('success') %}
+                <div class="alert alert-success">
+                    {{ get_flash('success') }}
+                </div>
+            {% endif %}
             {% block content %}{% endblock %}
         </main>
     </div>
@@ -86,5 +68,9 @@
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+{% for js in _JS %}
+    <script src="{{ js }}"></script>
+{% endfor %}
+
 </body>
 </html>

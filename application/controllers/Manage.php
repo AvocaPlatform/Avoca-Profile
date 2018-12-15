@@ -10,7 +10,10 @@
  * Facebook: https://www.facebook.com/jackytran0101
  */
 
-
+/**
+ * Class Manage
+ * @property CI_Upload $upload
+ */
 class Manage extends AVC_Controller
 {
     protected $require_auth = true;
@@ -23,6 +26,10 @@ class Manage extends AVC_Controller
 
     protected function authenticate()
     {
+        if (in_array($this->action_name, array('login'))) {
+            return true;
+        }
+
         if ($this->isLogin()) {
             return true;
         }
@@ -32,24 +39,30 @@ class Manage extends AVC_Controller
 
     protected function authenticateError()
     {
-        $this->redirect('/manage/logout');
+        $this->redirect('/manage/login');
     }
 
     public function index()
     {
+        $this->addCss([
+            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css',
+        ]);
 
+        $this->addJs([
+            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js',
+            'https://cdn.jsdelivr.net/npm/vue',
+            '/js/profile.js',
+        ]);
     }
 
     public function login()
     {
-        $return = $this->getQuery('r') ?: '/manage';
-
         if ($this->isLogin()) {
-            return $this->redirect_return($this->getRequest('r'));
+            return $this->redirect_return($this->getRequest('r'), '/manage');
         }
 
         $this->data['title'] = __('Login');
-        $this->data['return_url'] = $return;
+        $this->data['return_url'] = $this->getQuery('r');
         $this->setTitle($this->data['title']);
 
         if ($this->isPost()) {
@@ -68,7 +81,7 @@ class Manage extends AVC_Controller
                     ]);
 
                     $this->setSuccess('Login successful');
-                    return $this->redirect_return($this->getPost('return_url'));
+                    return $this->redirect_return($this->getPost('return_url'), '/manage');
                 }
 
                 $this->setError('Login error');
@@ -83,5 +96,32 @@ class Manage extends AVC_Controller
     public function logout()
     {
         $this->disableView();
+        $this->session->sess_destroy();
+        return $this->redirect_return('/');
+    }
+
+    public function save_profile()
+    {
+        $this->disableView();
+
+        if (!$this->isPost()) {
+            return $this->redirect('/manage');
+        }
+
+        $config['upload_path'] = APPPATH . '../public/uploads/';
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config['max_size'] = 2000;
+        $config['max_width'] = 6000;
+        $config['max_height'] = 6000;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('avatar')) {
+            $error = $this->upload->display_errors();
+            print_r($error);
+        } else {
+            $data = array('upload_data' => $this->upload->data());
+            print_r($data);
+        }
     }
 }
