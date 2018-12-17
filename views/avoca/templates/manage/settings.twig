@@ -1,5 +1,17 @@
 {% extends 'templates/layouts/manage.twig' %}
 
 {% block content %}
+<div id="AvocaProfileSettings">
+    {{ form_open('/manage/settings') }}
+    {% for system in systems %}
+        <div class="form-group">
+            <label>{{ system.name|upper }}</label>
+            <textarea name="settings[{{ system.id }}]"
+                      class="form-control">{{ system.value }}</textarea>
+        </div>
+    {% endfor %}
 
+    <button type="submit" class="btn btn-primary"> Save change </button>
+    {{ form_close() }}
+</div>
 {% endblock %}

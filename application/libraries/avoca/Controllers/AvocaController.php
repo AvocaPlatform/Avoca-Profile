@@ -109,7 +109,7 @@ class AvocaController extends AvocaBaseController
      */
     protected function getTitle()
     {
-        $page_title = 'Avoca-Framework';
+        $page_title = 'Avoca-Profile';
         if ($this->page_title) {
             $page_title = $this->page_title . ' | ' . $page_title;
         }

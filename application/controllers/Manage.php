@@ -159,6 +159,27 @@ class Manage extends AVC_Controller
 
     public function settings()
     {
+        /** @var Setting $settingModel */
+        $settingModel = $this->getModel('setting');
 
+        if ($this->isPost()) {
+            $post = $this->getPost('settings');
+            foreach ($post as $id => $value) {
+                $data = [
+                    'id' => $id,
+                    'value' => $value
+                ];
+
+                $settingModel->save($data);
+            }
+
+            $this->setSuccess('Updated settings');
+            return $this->redirect('/manage/settings');
+        }
+
+        $this->setTitle('Settings');
+
+        $systems = $settingModel->getSystems();
+        $this->data['systems'] = $systems['records'];
     }
 }
