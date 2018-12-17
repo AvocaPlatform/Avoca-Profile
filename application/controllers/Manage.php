@@ -42,6 +42,8 @@ class Manage extends AVC_Controller
         $this->redirect('/manage/login');
     }
 
+    /*====================ACTIONS=========================*/
+
     public function index()
     {
         $this->addCss([
@@ -122,27 +124,41 @@ class Manage extends AVC_Controller
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload('avatar')) {
-            $errors[] = $this->upload->display_errors();
-        } else {
-            $data = $this->upload->data();
-            $post['avatar'] = $data['file_name'];
+        if ($_FILES && $_FILES['avatar']['name']) {
+            if (!$this->upload->do_upload('avatar')) {
+                $errors[] = $this->upload->display_errors();
+            } else {
+                $data = $this->upload->data();
+                $post['avatar'] = $data['file_name'];
+            }
         }
 
-        if (!$this->upload->do_upload('cover')) {
-            $errors[] = $this->upload->display_errors();
-        } else {
-            $data = $this->upload->data();
-            $post['cover'] = $data['cover'];
+        if ($_FILES && $_FILES['cover']['name']) {
+            if (!$this->upload->do_upload('cover')) {
+                $errors[] = $this->upload->display_errors();
+            } else {
+                $data = $this->upload->data();
+                $post['cover'] = $data['cover'];
+            }
         }
 
         $profile = $this->getModel('profile');
         $post['id'] = 1;
         $profile->save($post);
 
-        $allErrors = array_merge($errors, $profile->getErrors());
+        $saveError = $profile->getErrors();
+        if ($saveError) {
+            $allErrors = array_merge($errors, $saveError);
+            $this->setError(implode(', ', $allErrors));
+        } else {
+            $this->setSuccess('Updated profile');
+        }
 
-        $this->setError(implode(', ', $allErrors));
         return $this->redirect('/manage');
+    }
+
+    public function settings()
+    {
+
     }
 }

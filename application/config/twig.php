@@ -29,5 +29,6 @@ $config['twig'] = [
         'avoca_form',
         'recordFVal',
         'recordVal',
+        'html_entity_decode',
     ]
 ];

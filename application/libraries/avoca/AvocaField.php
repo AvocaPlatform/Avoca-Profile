@@ -52,7 +52,7 @@ class AvocaField
         return $value;
     }
 
-    public function form($field, $value, $option = [])
+    public function form($field, $value, $option = true)
     {
         if ($option) {
             if (!is_array($option)) {

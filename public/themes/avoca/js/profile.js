@@ -11,8 +11,8 @@ var app = new Vue({
         title: '',
         social: '',
         socialLink: '',
-        title_arr: [],
-        social_arr: [],
+        title_arr: JSON.parse(title_arr_str),
+        social_arr: JSON.parse(social_arr_str),
     },
 
     methods: {
