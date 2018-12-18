@@ -17,6 +17,11 @@ A profile page for person
 * Change value to
 `$config['public_folder'] = 'public';`
 
+## Config
+* Go to application/config/config.php
+* Change
+`$config['base_url'] = 'http://localhost/Avoca-Profile';`
+
 ## Developer
 * First controller: application/controllers
 * View auto load from views/[theme]/templates/[controller]/[action].twig
