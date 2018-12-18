@@ -39,8 +39,20 @@
                     </li>
 
                     <li class="nav-item">
+                        <a class="nav-link {% if _controller == 'skills' %}active{% endif %}" href="{{ avoca_url('/skills') }}">
+                            <i class="fa fa-home"></i> Skills
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a class="nav-link {% if _controller == 'experiences' %}active{% endif %}" href="{{ avoca_url('/experiences') }}">
                             <i class="fa fa-home"></i> Experiences
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if _controller == 'portfolios' %}active{% endif %}" href="{{ avoca_url('/portfolios') }}">
+                            <i class="fa fa-home"></i> Portfolios
                         </a>
                     </li>
 
