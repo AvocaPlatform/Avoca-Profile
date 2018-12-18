@@ -117,3 +117,9 @@
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.card-header .card-actions {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}

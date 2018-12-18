@@ -13,14 +13,13 @@
     {% for css in _CSS %}
         <link rel="stylesheet" href="{{ css }}">
     {% endfor %}
-
     <title>{{ _pageTitle }}</title>
 </head>
 <body>
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ avoca_url('/manage') }}">{{ profile_name }}</a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link" href="{{ avoca_url('/manage/logout') }}">Sign out</a>
@@ -34,12 +33,19 @@
             <div class="sidebar-sticky">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link {% if _action == 'index' %}active{% endif %}" href="{{ avoca_url('/manage') }}">
+                        <a class="nav-link {% if _controller == 'manage' and _action == 'index' %}active{% endif %}" href="{{ avoca_url('/manage') }}">
                             <i class="fa fa-home"></i> Profile
                         </a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link {% if _action == 'settings' %}active{% endif %}" href="{{ avoca_url('/manage/settings') }}">
+                        <a class="nav-link {% if _controller == 'experiences' %}active{% endif %}" href="{{ avoca_url('/experiences') }}">
+                            <i class="fa fa-home"></i> Experiences
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link {% if _controller == 'manage' and _action == 'settings' %}active{% endif %}" href="{{ avoca_url('/manage/settings') }}">
                             <i class="fa fa-cogs"></i> Settings
                         </a>
                     </li>
@@ -47,7 +53,7 @@
             </div>
         </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4" style="padding-bottom: 20px">
             {% if get_flash('error') %}
                 <div class="alert alert-danger">
                     {{ html_entity_decode(get_flash('error'))|raw }}

@@ -132,17 +132,19 @@ class AvocaModel extends \CI_Model
             if (!empty($data[$field]) && $field != 'id') {
                 $fields_data[$field] = $this->reformat($field, $data[$field]);
             }
+
+            if ($field == 'date_created') {
+                // check valid fields
+                if (!isset($fields_data['date_created']) || !$fields_data['date_created']) {
+                    $fields_data['date_created'] = date('Y-m-d H:i:s');
+                }
+            }
         }
 
         // check empty data
         if (empty($fields_data)) {
             $this->setErrors('Empty data');
             return false;
-        }
-
-        // check valid fields
-        if (!isset($fields_data['date_created']) || !$fields_data['date_created']) {
-            $fields_data['date_created'] = date('Y-m-d H:i:s');
         }
 
         $valid = $this->valid($fields_data);

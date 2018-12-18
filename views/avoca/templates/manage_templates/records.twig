@@ -1,0 +1,49 @@
+{% extends 'templates/layouts/manage.twig' %}
+
+{% block content %}
+<div id="AvocaProfileRecords">
+    <div class="card">
+        <div class="card-header">
+            {{ title }}
+            <div class="card-actions">
+                <a href="{{ avoca_url('/' ~ _controller ~ '/edit') }}" class="btn">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    {% for field, options in listdefs %}
+                        <th scope="col">
+                            {{ options.label ?? field|capitalize|replace({'_': ' '}) }}
+                        </th>
+                    {% endfor %}
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for item in list %}
+                    <tr>
+                        {% for field, options in listdefs %}
+                            <td scope="row">
+                                {{ attribute(item, field) }}
+                            </td>
+                        {% endfor %}
+                        <td>
+                            <a href="{{ avoca_url('/' ~ _controller ~ '/edit/' ~ item.id) }}" class="btn btn-sm btn-info" style="padding: 0 5px">
+                                <i class="fas fa-pen"></i>
+                            </a>
+                            <a href="{{ avoca_url('/' ~ _controller ~ '/delete/' ~ item.id) }}" class="btn btn-sm btn-danger" style="padding: 0 5px">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
