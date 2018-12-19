@@ -20,5 +20,20 @@ class Home extends AVC_Controller
         $skillModel = $this->getModel('skill');
         $skills = $skillModel->getAll();
         $this->data['skills'] = $skills['records'];
+
+        $portfolioModel = $this->getModel('portfolio');
+        $portfolios = $portfolioModel->getAll();
+        $this->data['portfolios'] = $portfolios['records'];
+
+        $this->data['portfolioCategories'] = getAppListStrings('portfolioCategory');
+
+        $expModel = $this->getModel('experience');
+        $experiences = $expModel->getAll();
+        $this->data['experiences'] = $experiences['records'];
+
+        $blogModel = $this->getModel('blog');
+        $blogModel->setLimit(3);
+        $blogs = $blogModel->get_where('', false);
+        $this->data['blogs'] = $blogs['records'];
     }
 }

@@ -95,52 +95,22 @@
 
                         <ul class="nav list-unstyled" id="portfolio-flters">
                             <li class="filter filter-active" data-filter=".all">all</li>
-                            <li class="filter" data-filter=".branding">branding</li>
-                            <li class="filter" data-filter=".mockups">mockups</li>
-                            <li class="filter" data-filter=".uikits">ui kits</li>
-                            <li class="filter" data-filter=".webdesign">web design</li>
-                            <li class="filter" data-filter=".photography">photography</li>
+                            {% for item in portfolioCategories %}
+                                <li class="filter" data-filter=".{{ item }}">{{ item }}</li>
+                            {% endfor %}
                         </ul>
 
                     </div>
 
                     <div class="portfolio-container">
 
-                        <div class="col-lg-4 col-md-6 portfolio-thumbnail all branding uikits webdesign">
-                            <a class="popup-img" href="{{ avoca_static() }}/images/portfolio/1.jpg">
-                                <img src="{{ avoca_static() }}/images/portfolio/1.jpg" alt="img">
-                            </a>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 portfolio-thumbnail all mockups uikits photography">
-                            <a class="popup-img" href="{{ avoca_static() }}/images/portfolio/2.jpg">
-                                <img src="{{ avoca_static() }}/images/portfolio/2.jpg"  alt="img">
-                            </a>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 portfolio-thumbnail all branding webdesig photographyn">
-                            <a class="popup-img" href="{{ avoca_static() }}/images/portfolio/3.jpg">
-                                <img src="{{ avoca_static() }}/images/portfolio/3.jpg" alt="img">
-                            </a>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 portfolio-thumbnail all mockups webdesign photography">
-                            <a class="popup-img" href="{{ avoca_static() }}/images/portfolio/4.jpg">
-                                <img src="{{ avoca_static() }}/images/portfolio/4.jpg" alt="img">
-                            </a>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 portfolio-thumbnail all branding uikits photography">
-                            <a class="popup-img" href="{{ avoca_static() }}/images/portfolio/5.jpg">
-                                <img src="{{ avoca_static() }}/images/portfolio/5.jpg" alt="img">
-                            </a>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 portfolio-thumbnail all mockups uikits webdesign">
-                            <a class="popup-img" href="{{ avoca_static() }}/images/portfolio/6.jpg">
-                                <img src="{{ avoca_static() }}/images/portfolio/6.jpg" alt="img">
-                            </a>
-                        </div>
+                        {% for item in portfolios %}
+                            <div class="col-lg-4 col-md-6 portfolio-thumbnail all {{ item.class_cat }}">
+                                <a class="popup-img" href="{{ avoca_static(false) }}/uploads/{{ item.image }}">
+                                    <img src="{{ avoca_static(false) }}/uploads/{{ item.image }}" alt="{{ item.name }}">
+                                </a>
+                            </div>
+                        {% endfor %}
 
                     </div>
                 </div>
@@ -152,7 +122,43 @@
 
 
     <!-- start section experience -->
+    <div id="experience" class="text-left paddsection">
+        <div class="container">
+            <div class="section-title text-center">
+                <h2>experience</h2>
+            </div>
+        </div>
 
+        <div class="container">
+            <div class="experience-block">
+                <div class="row">
+
+                    {% for item in experiences %}
+                        <div class="col-lg-12">
+                            <div class="experience-info">
+                                <h3 class="mb-0">{{ item.name }}</h3>
+                                <div class="row">
+                                    <div class="col-7">
+                                        <div class="subheading mb-1">{{ item.workat }}</div>
+                                    </div>
+                                    <div class="col-5">
+                                        <div class="text-right text-danger">
+                                            {{ item.date_start }} - {{ ' ' }}
+                                            {{ item.date_end ?? 'Present' }}
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="{{ item.workat_link }}" class="text-info" style="font-size: 13px">{{ item.workat_link }}</a>
+                                <address class="text-muted">{{ item.workat_address }}</address>
+                                <p>{{ item.description|replace({"\n": "<br>"})|raw }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- End section experience -->
 
 
@@ -169,53 +175,19 @@
             <div class="journal-block">
                 <div class="row">
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="journal-info">
-
-                            <a href="blog-single.html"><img src="{{ avoca_static() }}/images/blog-post-1.jpg" class="img-responsive" alt="img"></a>
-
-                            <div class="journal-txt">
-
-                                <h4><a href="blog-single.html">SO LETS MAKE THE MOST IS BEAUTIFUL</a></h4>
-                                <p class="separator">To an English person, it will seem like simplified English
-                                </p>
-
+                    {% for item in blogs %}
+                        <div class="col-lg-4 col-md-6">
+                            <div class="journal-info">
+                                <a href="blog-single.html">
+                                    <img src="{{ avoca_static(false) }}/uploads/{{ item.image }}" class="img-responsive" alt="{{ item.name }}">
+                                </a>
+                                <div class="journal-txt">
+                                    <h4><a href="{{ avoca_url('/blog/' ~ item.slug ~ '-' ~ item.id) }}">{{ item.name }}</a></h4>
+                                    <p class="separator">{{ item.summary }}</p>
+                                </div>
                             </div>
-
                         </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="journal-info">
-
-                            <a href="blog-single.html"><img src="{{ avoca_static() }}/images/blog-post-2.jpg" class="img-responsive" alt="img"></a>
-
-                            <div class="journal-txt">
-
-                                <h4><a href="#blog-single.html">WE'RE GONA MAKE DREAMS COMES</a></h4>
-                                <p class="separator">To an English person, it will seem like simplified English
-                                </p>
-
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="journal-info">
-
-                            <a href="blog-single.html"><img src="{{ avoca_static() }}/images/blog-post-3.jpg" class="img-responsive" alt="img"></a>
-
-                            <div class="journal-txt">
-
-                                <h4><a href="blog-single.html">NEW LIFE CIVILIZATIONS TO BOLDLY</a></h4>
-                                <p class="separator">To an English person, it will seem like simplified English
-                                </p>
-
-                            </div>
-
-                        </div>
-                    </div>
+                    {% endfor %}
 
                 </div>
             </div>

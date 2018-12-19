@@ -9,4 +9,17 @@
  * Git: https://github.com/tdhungit
  */
 
-$config['app_list_strings'] = [];
+$config['app_list_strings'] = [
+    'portfolioCategory' => [
+        'PHP',
+        'Java',
+        'Python',
+        'Mobile',
+        'Javascript',
+        'BlockChain'
+    ],
+    'experienceType' => [
+        'Jobs',
+        'Educations'
+    ]
+];
