@@ -21,11 +21,8 @@ return [
     'record' => [
         'name' => [],
         'type' => [
-            'type' => 'select',
-            'options' => [
-                'Jobs' => 'Jobs',
-                'Educations' => 'Educations',
-            ],
+            'type' => 'dropdown',
+            'options' => 'experienceType',
         ],
         'workat' => [],
         'workat_link' => [],

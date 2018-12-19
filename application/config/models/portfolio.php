@@ -22,7 +22,10 @@ return [
         'image' => ['type' => 'image'],
         'link' => [],
         'source_link' => [],
-        'category' => [],
+        'category' => [
+            'type' => 'dropdown',
+            'options' => 'portfolioCategory',
+        ],
         'times' => ['type' => 'number'],
         'date_start' => ['type' => 'date'],
         'date_end' => ['type' => 'date'],

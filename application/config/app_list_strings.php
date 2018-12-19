@@ -11,15 +11,15 @@
 
 $config['app_list_strings'] = [
     'portfolioCategory' => [
-        'PHP',
-        'Java',
-        'Python',
-        'Mobile',
-        'Javascript',
-        'BlockChain'
+        'PHP' => 'PHP',
+        'Java' => 'Java',
+        'Python' => 'Python',
+        'Mobile' => 'Mobile',
+        'Javascript' => 'Javascript',
+        'BlockChain' => 'BlockChain',
     ],
     'experienceType' => [
-        'Jobs',
-        'Educations'
+        'Jobs' => 'Jobs',
+        'Educations' => 'Educations',
     ]
 ];
