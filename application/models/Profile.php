@@ -14,4 +14,19 @@
 class Profile extends AVC_Model
 {
     protected $table = 'profile';
+
+    public function getProfile()
+    {
+        $profile = $this->get_where();
+
+        try {
+            $profile['title_arr'] = json_decode($profile['title'], true);
+            $profile['title_str'] = implode(', ', $profile['title_arr']);
+            array_unshift($profile['title_arr'], $profile['name']);
+
+            $profile['social_arr'] = json_decode($profile['social'], true);
+        } catch (Exception $exception) {}
+
+        return $profile;
+    }
 }

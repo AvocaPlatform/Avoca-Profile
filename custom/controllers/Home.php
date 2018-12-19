@@ -13,6 +13,6 @@ class HomeController extends Home
 {
     public function index()
     {
-        $this->setTitle('Custom Controller Home');
+        parent::index();
     }
 }
