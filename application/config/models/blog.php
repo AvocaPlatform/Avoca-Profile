@@ -21,11 +21,28 @@ return [
     'record' => [
         'image' => [],
         'name' => [],
-        'slug' => [],
-        'date_publish' => [],
-        'category' => [],
-        'is_hot' => ['type' => 'date'],
-        'summary' => ['type' => 'date'],
-        'content' => ['type' => 'textarea'],
+        'slug' => [
+            'type' => 'readonly'
+        ],
+        'date_publish' => [
+            'type' => 'date'
+        ],
+        'category' => [
+
+        ],
+        'is_hot' => [
+            'type' => 'select',
+            'options' => [
+                'No' => 'No',
+                'Yes' => 'Yes',
+            ]
+        ],
+        'summary' => [
+            'type' => 'textarea'
+        ],
+        'content' => [
+            'type' => 'textarea',
+            'class' => 'editorWYSIWYG',
+        ],
     ]
 ];

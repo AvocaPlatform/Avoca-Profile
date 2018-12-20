@@ -1,9 +1,3 @@
-$(document).ready(function() {
-    $('.editorWYSIWYG').summernote({
-        height: 250
-    });
-});
-
 var app = new Vue({
     el: '#AvocaProfile',
 

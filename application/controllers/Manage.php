@@ -46,12 +46,7 @@ class Manage extends AVC_Controller
 
     public function index()
     {
-        $this->addCss([
-            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css',
-        ]);
-
         $this->addJs([
-            'https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js',
             'https://cdn.jsdelivr.net/npm/vue',
             '/js/profile.js',
         ]);
