@@ -313,7 +313,7 @@ nav ul li a {
 }
 
 #about .about-descr .separator {
-    max-width: 80%;
+    max-width: 100%;
     margin-bottom: 0;
     text-align: left;
 }
@@ -629,7 +629,7 @@ nav ul li a {
 
 #experience {
     position: relative;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     background: #f7f7f7;
 }
 
@@ -650,14 +650,23 @@ nav ul li a {
     margin: 0;
 }
 
-#experience p {
-    margin: 10px 0 20px 0;
-}
-
 .about-descr {
     margin-top: -70px;
 }
 
+.experience-info {
+    margin-bottom: 20px;
+}
+
 .experience-info h3 {
     font-size: 22px;
+}
+
+.experience-info-desc {
+    padding-top: 10px;
+    line-height: 24px;
+}
+
+#header .header-content .list-social li i {
+    font-size: 20px;
 }

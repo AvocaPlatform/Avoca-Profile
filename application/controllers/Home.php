@@ -13,6 +13,11 @@ class Home extends AVC_Controller
 {
     public function index()
     {
+        //$this->disableView();
+        /** @var Setting $sysModel */
+        $sysModel = $this->getModel('setting');
+        $this->data['sys_settings'] = $sysModel->getSystems();
+
         /** @var Profile $profileModel */
         $profileModel = $this->getModel('profile');
         $this->data['profile'] = $profileModel->getProfile();
@@ -28,7 +33,7 @@ class Home extends AVC_Controller
         $this->data['portfolioCategories'] = getAppListStrings('portfolioCategory');
 
         $expModel = $this->getModel('experience');
-        $experiences = $expModel->getAll();
+        $experiences = $expModel->getAll('', '(case when "date_end" is null then 0 else 1 end), date_end desc, date_start desc');
         $this->data['experiences'] = $experiences['records'];
 
         $blogModel = $this->getModel('blog');

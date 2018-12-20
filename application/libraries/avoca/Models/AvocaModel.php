@@ -374,7 +374,7 @@ class AvocaModel extends \CI_Model
      * @param string $table
      * @param int $offset
      * @param int $limit ==-1 will show all records
-     * @param array $orders
+     * @param array|string $orders
      * @return array|mixed|null
      */
     public function get_where($where = '', $row = true, $table = '', $offset = 0, $limit = 0, $orders = [])
@@ -389,8 +389,12 @@ class AvocaModel extends \CI_Model
         // limit
         $this->setDBLimit($offset, $limit);
         // order by
-        foreach ($orders as $order_by => $order_type) {
-            $this->db->order_by($order_by, $order_type);
+        if (is_array($orders)) {
+            foreach ($orders as $order_by => $order_type) {
+                $this->db->order_by($order_by, $order_type);
+            }
+        } else if (is_string($orders)) {
+            $this->db->order_by($orders);
         }
         // query
         $query = $this->db->get($table);

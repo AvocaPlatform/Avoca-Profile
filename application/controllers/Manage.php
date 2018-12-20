@@ -179,7 +179,7 @@ class Manage extends AVC_Controller
 
         $this->setTitle('Settings');
 
-        $systems = $settingModel->getSystems();
+        $systems = $settingModel->get_where(['category' => 'system'], false);
         $this->data['systems'] = $systems['records'];
     }
 }

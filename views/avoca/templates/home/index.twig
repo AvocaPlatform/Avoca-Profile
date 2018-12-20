@@ -1,12 +1,20 @@
 {% extends "templates/layouts/frontend.twig" %}
 
 {% block content %}
+    <style>
+        #header {
+            background: url('{{ avoca_static(false) }}/uploads/{{ profile.cover }}') repeat scroll center center / cover;
+        }
+        #header .header-content * {
+            color: {{ sys_settings.cover_color ?? '#ffffff' }};
+        }
+    </style>
     <script>
         var typed_arr = {{ profile.title_arr|json_encode()|raw }};
     </script>
 
     <!-- start section header -->
-    <div id="header" class="home" style="background: url('{{ avoca_static(false) }}/uploads/{{ profile.cover }}') repeat scroll center center / cover;">
+    <div id="header" class="home">
 
         <div class="container">
             <div class="header-content">
@@ -45,7 +53,7 @@
                     <div class="about-descr">
 
                         <p class="p-heading">{{ profile.summary }}</p>
-                        <p class="separator">{{ profile.description }}</p>
+                        <p class="separator">{{ profile.description|replace({"\n": "<br>"})|raw }}</p>
 
                     </div>
 
@@ -136,7 +144,15 @@
                     {% for item in experiences %}
                         <div class="col-lg-12">
                             <div class="experience-info">
-                                <h3 class="mb-0">{{ item.name }}</h3>
+                                <h3 class="mb-0">
+                                    <a href="javascript:void(0)"
+                                       data-toggle="collapse"
+                                       data-target="#Experience_ID{{ item.id }}"
+                                       aria-expanded="true"
+                                       aria-controls="Experience_ID{{ item.id }}">
+                                        {{ item.name }}
+                                    </a>
+                                </h3>
                                 <div class="row">
                                     <div class="col-7">
                                         <div class="subheading mb-1">{{ item.workat }}</div>
@@ -150,7 +166,13 @@
                                 </div>
                                 <a href="{{ item.workat_link }}" class="text-info" style="font-size: 13px">{{ item.workat_link }}</a>
                                 <address class="text-muted">{{ item.workat_address }}</address>
-                                <p>{{ item.description|replace({"\n": "<br>"})|raw }}</p>
+
+                                <div id="Experience_ID{{ item.id }}"
+                                   class="collapse hide"
+                                   aria-labelledby="headingOne"
+                                   data-parent="#accordion">
+                                    <div class="experience-info-desc">{{ item.description|replace({"\n": "<br>"})|raw }}</div>
+                                </div>
                             </div>
                         </div>
                     {% endfor %}
@@ -209,10 +231,10 @@
                             <h2 class="mb-30">GET IN TOUCH</h2>
 
                             <ul class="contact-details">
-                                <li><span>23 Main, Street</span></li>
+                                <li><span>{{ profile.address }}</span></li>
                                 <li><span>New York, United States</span></li>
-                                <li><span>+88 01912704287</span></li>
-                                <li><span>example@example.com</span></li>
+                                <li><span>{{ profile.phone }}</span></li>
+                                <li><span>{{ profile.email }}</span></li>
                             </ul>
 
                         </div>

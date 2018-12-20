@@ -18,6 +18,13 @@ class Setting extends AVC_Model
 
     public function getSystems()
     {
-        return $this->get_where(['category' => 'system'], false);
+        $settings = [];
+
+        $sys = $this->get_where(['category' => 'system'], false);
+        foreach ($sys['records'] as $item) {
+            $settings[$item['name']] = $item['value'];
+        }
+
+        return $settings;
     }
 }
