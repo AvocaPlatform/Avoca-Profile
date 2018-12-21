@@ -9,9 +9,15 @@
  * Git: https://github.com/tdhungit
  */
 
-$config['app_list_strings'] = [
-    'experienceType' => [
-        'Jobs' => 'Jobs',
-        'Educations' => 'Educations',
-    ]
+return [
+    'title' => 'name',
+    'list' => [
+        'id' => [],
+        'name' => [],
+        'slug' => [],
+    ],
+    'record' => [
+        'name' => [],
+        'slug' => [],
+    ],
 ];

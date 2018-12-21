@@ -9,13 +9,20 @@
  * Git: https://github.com/tdhungit
  */
 
-function fieldForm_date($field, $value, $extra = [])
+function fieldForm_image($field, $value, $option = [])
 {
-    $defaults = array(
-        'type' => 'date',
-        'name' => $field,
-        'value' => $value
-    );
+    $class = isset($option['imgClass']) ? $option['imgClass'] : 'img-thumbnail';
+    unset($option['class']);
+    unset($option['imgClass']);
 
-    return '<input ' . _parse_form_attributes($extra, $defaults) . ' />';
+    $default = [
+        'class' => $class
+    ];
+
+    return '
+        <input type="file" name="' . $field . '" class="form-control-file">
+        <div class="form-text">
+            <img src="' . avoca_static(false) . '/uploads/' . $value . '" '. _parse_form_attributes($option, $default) .'>
+        </div>
+    ';
 }

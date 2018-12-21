@@ -20,7 +20,10 @@ class Portfolio extends AVC_Model
             try {
                 $record['category_arr'] = json_decode($record['category']);
                 $record['class_cat'] = implode(' ', $record['category_arr']);
+                $record['category'] = json_decode($record['category'], true);
             } catch (Exception $exception) {}
+        } else if (is_object($record)) {
+            $record->category = json_decode($record->category, true);
         }
 
         return $record;

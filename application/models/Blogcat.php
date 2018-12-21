@@ -12,4 +12,24 @@
 class Blogcat extends AVC_Model
 {
     protected $table = 'blogcats';
+
+    public function create($data)
+    {
+        if (empty($data['slug'])) {
+            $data['slug'] = strtolower(url_title($data['name']));
+        } else {
+            $data['slug'] = strtolower(url_title($data['slug']));
+        }
+
+        return parent::create($data);
+    }
+
+    public function update($data)
+    {
+        if (!empty($data['slug'])) {
+            $data['slug'] = strtolower(url_title($data['slug']));
+        }
+
+        return parent::update($data);
+    }
 }

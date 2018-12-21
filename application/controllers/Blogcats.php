@@ -9,9 +9,8 @@
  * Git: https://github.com/tdhungit
  */
 
-$config['app_list_strings'] = [
-    'experienceType' => [
-        'Jobs' => 'Jobs',
-        'Educations' => 'Educations',
-    ]
-];
+
+class Blogcats extends AVC_ManageController
+{
+    protected $model = 'blogcat';
+}

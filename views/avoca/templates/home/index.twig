@@ -103,8 +103,8 @@
 
                         <ul class="nav list-unstyled" id="portfolio-flters">
                             <li class="filter filter-active" data-filter=".all">all</li>
-                            {% for item in portfolioCategories %}
-                                <li class="filter" data-filter=".{{ item }}">{{ item }}</li>
+                            {% for item in portfolio_cats %}
+                                <li class="filter" data-filter=".PCAT{{ item.id }}">{{ item.name }}</li>
                             {% endfor %}
                         </ul>
 
@@ -113,7 +113,7 @@
                     <div class="portfolio-container">
 
                         {% for item in portfolios %}
-                            <div class="col-lg-4 col-md-6 portfolio-thumbnail all {{ item.class_cat }}">
+                            <div class="col-lg-4 col-md-6 portfolio-thumbnail all {% for cat in item.category %}PCAT{{ cat }} {% endfor %}">
                                 <a class="popup-img" href="{{ avoca_static(false) }}/uploads/{{ item.image }}">
                                     <img src="{{ avoca_static(false) }}/uploads/{{ item.image }}" alt="{{ item.name }}">
                                 </a>

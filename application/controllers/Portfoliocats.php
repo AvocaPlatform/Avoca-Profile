@@ -10,7 +10,7 @@
  */
 
 
-class Portfoliocats extends AVC_Controller
+class Portfoliocats extends AVC_ManageController
 {
-
+    protected $model = 'portfoliocat';
 }

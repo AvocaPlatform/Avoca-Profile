@@ -54,7 +54,6 @@ class AvocaField
 
     public function form($field, $value, $option = true)
     {
-        avoca_log($option);
         if ($option) {
             if (!is_array($option)) {
                 $type = 'text';

@@ -22,6 +22,9 @@ class AvocaModel extends \CI_Model
 {
     protected $table = '';
     protected $limit = 0;
+
+    protected $field_defs = [];
+
     protected $errors = [];
 
     public function __construct()
@@ -44,6 +47,11 @@ class AvocaModel extends \CI_Model
     public function getTable()
     {
         return $this->table;
+    }
+
+    public function getFieldDefs()
+    {
+        return $this->field_defs;
     }
 
     public function setErrors($messages)

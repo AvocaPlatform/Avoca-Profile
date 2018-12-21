@@ -19,7 +19,10 @@ return [
         'is_hot' => [],
     ],
     'record' => [
-        'image' => [],
+        'image' => [
+            'type' => 'image',
+            'style' => 'max-height: 120px',
+        ],
         'name' => [],
         'slug' => [
             'type' => 'readonly'
@@ -28,7 +31,13 @@ return [
             'type' => 'date'
         ],
         'category' => [
-
+            'type' => 'relate',
+            'multiple' => true,
+            'related' => [
+                'model' => 'blogcat',
+                'id_field' => 'id',
+                'text_field' => 'name',
+            ],
         ],
         'is_hot' => [
             'type' => 'select',

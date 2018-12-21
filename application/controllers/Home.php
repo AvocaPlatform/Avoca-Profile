@@ -14,9 +14,9 @@ class Home extends AVC_Controller
     public function index()
     {
         //$this->disableView();
-        /** @var Setting $sysModel */
-        $sysModel = $this->getModel('setting');
-        $this->data['sys_settings'] = $sysModel->getSystems();
+        $portfolioCatModel = $this->getModel('portfoliocat');
+        $portfolio_cats = $portfolioCatModel->getAll();
+        $this->data['portfolio_cats']  = $portfolio_cats['records'];
 
         /** @var Profile $profileModel */
         $profileModel = $this->getModel('profile');

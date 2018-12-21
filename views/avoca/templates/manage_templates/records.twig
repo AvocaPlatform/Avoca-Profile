@@ -28,7 +28,12 @@
                     <tr>
                         {% for field, options in listdefs %}
                             <td scope="row">
-                                {{ attribute(item, field) }}
+                                {% set field_value = attribute(item, field) %}
+                                {% if is_array(field_value) %}
+                                    {{ field_value|json_encode }}
+                                {% else %}
+                                    {{ field_value }}
+                                {% endif %}
                             </td>
                         {% endfor %}
                         <td>

@@ -23,8 +23,13 @@ return [
         'link' => [],
         'source_link' => [],
         'category' => [
-            'type' => 'dropdown',
-            'options' => 'portfolioCategory',
+            'type' => 'relate',
+            'multiple' => true,
+            'related' => [
+                'model' => 'portfoliocat',
+                'id_field' => 'id',
+                'text_field' => 'name',
+            ],
         ],
         'times' => ['type' => 'number'],
         'date_start' => ['type' => 'date'],
