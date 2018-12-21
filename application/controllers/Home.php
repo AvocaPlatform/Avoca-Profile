@@ -57,4 +57,12 @@ class Home extends AVC_Controller
     {
 
     }
+
+    public function send_message()
+    {
+        $this->disableView();
+        if ($this->isPost()) {
+
+        }
+    }
 }
