@@ -13,10 +13,9 @@ class Home extends AVC_Controller
 {
     public function index()
     {
-        //$this->disableView();
-        $portfolioCatModel = $this->getModel('portfoliocat');
-        $portfolio_cats = $portfolioCatModel->getAll();
-        $this->data['portfolio_cats']  = $portfolio_cats['records'];
+        /** @var Setting $sysModel */
+        $sysModel = $this->getModel('setting');
+        $this->data['sys_settings'] = $sysModel->getSystems();
 
         /** @var Profile $profileModel */
         $profileModel = $this->getModel('profile');
@@ -26,11 +25,13 @@ class Home extends AVC_Controller
         $skills = $skillModel->getAll();
         $this->data['skills'] = $skills['records'];
 
+        $portfolioCatModel = $this->getModel('portfoliocat');
+        $portfolio_cats = $portfolioCatModel->getAll();
+        $this->data['portfolio_cats']  = $portfolio_cats['records'];
+
         $portfolioModel = $this->getModel('portfolio');
         $portfolios = $portfolioModel->getAll();
         $this->data['portfolios'] = $portfolios['records'];
-
-        $this->data['portfolioCategories'] = getAppListStrings('portfolioCategory');
 
         $expModel = $this->getModel('experience');
         $experiences = $expModel->getAll('', '(case when "date_end" is null then 0 else 1 end), date_end desc, date_start desc');
