@@ -56,3 +56,8 @@ $route['translate_uri_dashes'] = FALSE;
 
 // MANAGE
 $route['manage'] = 'manage/index';
+
+// Frontend
+$route['page/(.+)-(\d+)'] = 'home/page/$2';
+$route['blog'] = 'home/blog';
+$route['blog/(.+)-(\d+)'] = 'home/blog_view/$2';

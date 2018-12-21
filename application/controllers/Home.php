@@ -42,4 +42,19 @@ class Home extends AVC_Controller
         $blogs = $blogModel->get_where('', false);
         $this->data['blogs'] = $blogs['records'];
     }
+
+    public function page($id)
+    {
+
+    }
+
+    public function blog()
+    {
+
+    }
+
+    public function blog_view($id)
+    {
+
+    }
 }
