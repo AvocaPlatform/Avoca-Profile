@@ -25,3 +25,9 @@ A profile page for person
 ## Developer
 * First controller: application/controllers
 * View auto load from views/[theme]/templates/[controller]/[action].twig
+
+## Note
+* Auto system will run with SQLite3: `application/config/avocaprofile.db`
+* If you want to use with MYSQL
+* `import mysql from: application/config/avoca_profile.sql`
+* `update database info with codeigniter syntax: application/config/database.php`
