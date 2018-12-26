@@ -28,4 +28,10 @@ class Blog extends AVC_Model
 
         return $record;
     }
+
+    public function getBlog()
+    {
+        $this->db->select('b.*');
+        $this->db->from($this->table);
+    }
 }

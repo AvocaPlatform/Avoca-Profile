@@ -50,7 +50,13 @@ class Home extends AVC_Controller
 
     public function blog()
     {
+        /** @var Blogcat $catModel */
+        $catModel = $this->getModel('blogcats');
 
+        /** @var Blog $blogModel */
+        $blogModel = $this->getModel('blog');
+
+        $this->data['categories'] = $catModel->getAll();
     }
 
     public function blog_view($id)

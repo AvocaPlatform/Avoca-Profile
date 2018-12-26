@@ -423,7 +423,7 @@ class AvocaModel extends \CI_Model
             $records = $query->result_array();
 
             foreach ($records as $record) {
-                $data['records'][] = $this->displayRecord($record);
+                $data['records'][$record['id']] = $this->displayRecord($record);
             }
 
             return $data;
